@@ -1,6 +1,9 @@
 package accounts
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 
 var errNoMoney = errors.New("can't withdraw")
@@ -33,4 +36,17 @@ func (a *Account) Withdraw(amount int) error {
 	}
 	a.balance -= amount
 	return nil
+}
+
+//Change owner mhtod
+func (a *Account) ChageOwner(newOwner string) {
+	a.owner = newOwner
+}
+
+func (a *Account) Owner() string {
+	return a.owner
+}
+
+func (a Account) String() string{
+	return fmt.Sprint(a.Owner(), "'s account \nhas: ", a.Balance())
 }
